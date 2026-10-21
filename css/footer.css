@@ -1,0 +1,195 @@
+/* ==========================================================================
+   COMPONENTE: FOOTER ESTILO AI
+   ========================================================================== */
+
+.app-footer {
+    width: 100%;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+    margin-top: 40px; /* Espaçamento em relação ao conteúdo acima */
+    font-family: var(--font-family);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* Grid Topo do Footer */
+.footer-top-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* Branding e Descrição */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.footer-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.footer-description {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+/* Colunas de Links */
+.footer-column-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--accent-purple);
+    transform: translateX(2px);
+}
+
+/* Tag Badge para Novidades */
+.footer-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: rgba(99, 102, 241, 0.15);
+    color: var(--accent-purple);
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* Linha Divisória */
+.footer-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    width: 100%;
+}
+
+/* Rodapé Inferior (Copyright + Status + Redes Sociais) */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981; /* Verde Online */
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    animation: pulseStatus 2s infinite;
+}
+
+@keyframes pulseStatus {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-app);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.footer-social-btn:hover {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--accent-purple);
+    transform: translateY(-2px);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .footer-top-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .footer-socials {
+        display: none;
+    }
+}
