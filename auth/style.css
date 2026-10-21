@@ -1,0 +1,150 @@
+/* Estilos da Página de Login inspirada no Runway */
+.auth-body {
+    background-color: #ffffff;
+    font-family: var(--font-family);
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 24px;
+}
+
+.auth-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.auth-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-input-group input {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    outline: none;
+    color: #111827;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-input-group input::placeholder {
+    color: #9ca3af;
+}
+
+.auth-input-group input:focus {
+    border-color: #111827;
+    box-shadow: 0 0 0 1px #111827;
+}
+
+.auth-terms {
+    font-size: 0.75rem;
+    color: #6b7280;
+    line-height: 1.4;
+    text-align: left;
+    margin: 4px 0 12px 0;
+}
+
+.auth-btn-primary {
+    width: 100%;
+    padding: 16px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 4px;
+}
+
+.auth-btn-primary:hover {
+    background-color: #262626;
+}
+
+.auth-btn-social {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.auth-btn-social:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.auth-footer-link {
+    margin-top: 24px;
+}
+
+.auth-footer-link a {
+    color: #6b7280;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+.auth-footer-link a:hover {
+    color: #111827;
+    text-decoration: underline;
+}
+
+/* Logotipo na Página de Login */
+.auth-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.auth-logo {
+    height: 38px;
+    object-fit: contain;
+}
