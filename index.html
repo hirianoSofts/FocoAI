@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FocoAI Studio - Plataforma Inteligente de Criação com IA</title>
+
+    <!-- Metadados para Motores de Busca e Rastreadores de IA -->
+    <meta name="description" content="FocoAI Studio é uma plataforma avançada de inteligência artificial para criação de anúncios, edição de vídeo, motion e assistência inteligente.">
+    <meta name="keywords" content="FocoAI, Inteligência Artificial, IA, Chatbot, Geração de Imagem, Edição de Vídeo, Criativos, Wan 3.0">
+    <meta name="author" content="FocoAI Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Redes Sociais / Visualização de IA -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FocoAI Studio">
+    <meta property="og:description" content="O seu estúdio completo de inteligência artificial para vídeos, imagens e assistentes.">
+    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:site_name" content="FocoAI Studio">
+
+    <!-- Configurações PWA (Progressive Web App) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Configurações PWA para iOS (Apple) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FocoAI Studio">
+    <link rel="apple-touch-icon" href="assets/favicon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+
+    <!-- Google Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    
+    <!-- Flaticon UIcons CDN -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/message.css">
+    <link rel="stylesheet" href="css/logue.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/inspiration.css">
+</head>
+<body>
+
+    <!-- Banner de Anúncios Topo -->
+    <div class="announcement-banner">
+        <span>Acesso Ilimitado ao FocoAI Wan 3.0 no plano Max até 18 de Outubro.</span>
+        <div class="banner-actions">
+            <button class="banner-upgrade-btn">Atualizar Plano</button>
+            <button class="banner-close-btn" id="closeBanner"><i class="fi fi-rr-cross-small"></i></button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Container onde a Sidebar será injetada via JS -->
+        <div id="sidebar-container"></div>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Container onde o Cabeçalho será injetado via JS -->
+            <div id="header-container"></div>
+
+            <!-- Área de Trabalho / Workspace -->
+            <div class="workspace" id="workspace">
+                <div class="hero-section" id="heroSection">
+                    <!-- Logótipo e Saudação -->
+                    <div class="hero-brand-header">
+                        <div class="hero-logo-container">
+                            <img src="assets/logo.png" alt="FocoAI Logo" class="hero-logo-img">
+                        </div>
+                        <span class="hero-greeting-text" id="heroGreetingText">Olá, Visitante!</span>
+                    </div>
+
+                    <h1 class="hero-title">O que posso ajudar você a descobrir hoje?</h1>
+
+                    <!-- Container onde a Barra de Mensagens será injetada via JS -->
+                    <div class="chat-input-wrapper" id="chatInputWrapper"></div>
+
+                    <!-- Botões de Ação Rápida -->
+                    <div class="quick-chips-grid" id="quickChipsGrid">
+                        <button class="quick-chip"><i class="fi fi-rr-bullhorn"></i> Criar Anúncio</button>
+                        <button class="quick-chip"><i class="fi fi-rr-play-alt"></i> Vídeo de Produto</button>
+                        <button class="quick-chip"><i class="fi fi-rr-smartphone"></i> Redimensionar para Ads</button>
+                        <button class="quick-chip"><i class="fi fi-rr-magic-wand"></i> Animação / Motion</button>
+                        <button class="quick-chip"><i class="fi fi-rr-stats"></i> Analisar Anúncio</button>
+                        <button class="quick-chip"><i class="fi fi-rr-video-camera"></i> Seedance 2.5</button>
+                    </div>
+
+                    <!-- Seção de Histórias e Obter o App -->
+                    <div class="inspiration-section" id="inspirationSection">
+                        <div class="stories-section-header">
+                            <h2 class="stories-title">Histórias</h2>
+                            <a href="#" class="see-all-link">Ver tudo</a>
+                        </div>
+
+                        <div class="media-cards-grid">
+                            <div class="media-card">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/wanga.png" alt="ATV Big Air Tour" class="card-real-img">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title-text">Usar o FocoAI para fazer crescer a ATV Big Air Tour</h3>
+                                    <span class="card-date-text">9/09/2026</span>
+                                </div>
+                            </div>
+
+                            <div class="media-card">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/prime.png" alt="FocoAI Prime" class="card-real-img">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title-text">O nosso modelo mais recente da foco o FocoAI Prime 1.0</h3>
+                                    <span class="card-date-text">9/09/2026</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Barra Estilo IA: Obter a aplicação (Instalar PWA) -->
+                        <div class="get-app-card">
+                            <div class="get-app-info">
+                                <div class="get-app-icon">
+                                    <i class="fi fi-rr-mobile-button"></i>
+                                </div>
+                                <div class="get-app-text">
+                                    <h3>Obter a aplicação FocoAI</h3>
+                                    <p>Aceda ao FocoAI no seu smartphone ou computador para uma experiência mais rápida.</p>
+                                </div>
+                            </div>
+                            <button class="get-app-btn" id="installPwaBtn">
+                                <span>Baixar App</span>
+                                <i class="fi fi-rr-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensagens Dinâmicas do Chat -->
+                <div class="chat-results-container" id="chatResults"></div>
+                
+                <!-- Container do Footer -->
+                <div id="footer-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Confirmação de Logout -->
+    <div class="modal-backdrop" id="logoutModal">
+        <div class="modal-card">
+            <div class="modal-icon"><i class="fi fi-rr-sign-out-alt"></i></div>
+            <h3>Sair da Conta</h3>
+            <p>Tem certeza de que deseja encerrar sua sessão no FocoAI Studio?</p>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="cancelLogoutBtn">Cancelar</button>
+                <button class="btn-confirm-logout" id="confirmLogoutBtn">Sim, Sair</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Container onde o Auth Bottom Sheet será renderizado -->
+    <div id="authBottomSheetContainer"></div>
+
+    <!-- Script Principal -->
+    <script type="module" src="script.js"></script>
+
+    <!-- Script do PWA e Instalação -->
+    <script src="pwa.js"></script>
+</body>
+</html>
