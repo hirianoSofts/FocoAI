@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-family: 'DM Sans', sans-serif;
+    --bg-app: #f3f4f6;
+    --bg-sidebar: #fafafa;
+    --bg-card: #ffffff;
+    --border-color: #e5e7eb;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #9ca3af;
+    --accent-purple: #6366f1;
+    --accent-purple-hover: #4f46e5;
+    --sidebar-width: 260px;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--text-primary);
+    background-color: var(--bg-app);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Estilos Adicionais para Cadastro Multi-Passo --- */
+
+/* Botão Voltar */
+.auth-back-btn {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+
+.auth-back-btn:hover {
+    color: #111827;
+}
+
+.auth-back-btn.hidden {
+    display: none;
+}
+
+/* Indicador de Passos (Step Indicator) */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.step-pill {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #e5e7eb;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-pill.active {
+    width: 28px;
+    background-color: #3b82f6; /* Azul destaque do progresso */
+}
+
+/* Esconder/Exibir Passos do Wizard */
+.wizard-step {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wizard-step.active {
+    display: flex;
+    animation: fadeInStep 0.3s ease forwards;
+}
+
+@keyframes fadeInStep {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Labels e Entradas da Autenticação */
+.auth-input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+}
+
+.auth-input-group label {
+    font-size: 0.88rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Duas colunas para Nome e Sobrenome */
+.auth-row-inputs {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.auth-row-inputs .auth-input-group {
+    flex: 1;
+}
+
+/* Divisor 'ou' */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 8px 0;
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.auth-divider span {
+    padding: 0 10px;
+}
+
+.auth-footer-text {
+    margin-top: 32px;
+}
+
+/* Spinner de Progresso no Botão de Cadastro */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 0.8s ease-in-out infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.spinner.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.auth-btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
