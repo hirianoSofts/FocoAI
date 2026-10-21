@@ -1,0 +1,453 @@
+/* --- LOGÓTIPO E SAUDAÇÃO --- */
+.hero-brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.hero-logo-container {
+    width: auto;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.hero-logo-img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.hero-greeting-text {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    letter-spacing: -0.2px;
+}
+
+.hero-title {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+}
+
+/* --- BARRA DE MENSAGEM (ALTURA AUMENTADA) --- */
+.prvompt-box-card {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    padding: 18px 20px; /* Padding interno aumentado para mais altura */
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.prompt-box-card:focus-within {
+    border-color: var(--border-color);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+#chatForm textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: var(--font-family);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    padding: 6px 2px; /* Padding vertical ajustado */
+    min-height: 46px; /* Altura mínima aumentada */
+    max-height: 140px;
+    line-height: 1.5;
+}
+
+#chatForm textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* Linha Inferior da Caixa de Prompt */
+.prompt-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px; /* Espaçamento superior ajustado */
+    gap: 8px;
+    border-top: 1px solid var(--border-color); /* Linha divisória sutil opcional, se desejar */
+}
+
+.prompt-left-tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.prompt-left-tools::-webkit-scrollbar {
+    display: none;
+}
+
+.prompt-right-tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* Botão minimalista (link/anexo) */
+.tool-icon-minimal {
+    background: none;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-app);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.tool-icon-minimal:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Chips internos (Deep Search, Reason) */
+.prompt-action-pill {
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.prompt-action-pill:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.prompt-action-pill i {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Botão de Enviar com Seta para Cima */
+.send-prompt-btn-img {
+    background-color: var(--border-color);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.send-prompt-btn-img.active {
+    background-color: var(--text-primary);
+    color: var(--bg-card);
+    transform: scale(1.05);
+}
+
+/* Preview de Anexos */
+.attachments-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-bottom: 4px;
+}
+
+.attachment-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+}
+
+.attachment-pill .file-name {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.attachment-pill i.remove-file-btn {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+.attachment-pill i.remove-file-btn:hover { color: #ef4444; }
+
+/* --- OTIMIZAÇÕES PARA CELULAR / MOBILE --- */
+@media (max-width: 600px) {
+    .workspace {
+        padding: 16px 12px 100px 12px;
+    }
+
+    .hero-title {
+        font-size: 1.65rem;
+        line-height: 1.25;
+        margin-bottom: 8px;
+    }
+
+    .hero-logo-img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .hero-greeting-text {
+        font-size: 1.2rem;
+    }
+
+    .prompt-box-card {
+        padding: 14px 16px; /* Altura proporcionalmente confortável no mobile */
+    }
+
+    #chatForm textarea {
+        font-size: 0.98rem;
+        padding: 4px 0;
+        min-height: 38px;
+    }
+
+    .prompt-bottom-row {
+        padding-top: 8px;
+    }
+
+    .prompt-action-pill {
+        padding: 5px 12px;
+        font-size: 0.82rem;
+    }
+
+    .tool-icon-minimal,
+    .send-prompt-btn-img {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+    }
+}
+
+/* --- ESTILOS DE FORMATAÇÃO MARKDOWN NAS MENSAGENS --- */
+.chat-message.ai .message-bubble {
+    color: var(--text-primary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+/* Títulos */
+.md-h1 { font-size: 1.4rem; font-weight: 700; margin: 12px 0 6px 0; color: var(--text-primary); }
+.md-h2 { font-size: 1.2rem; font-weight: 700; margin: 10px 0 4px 0; color: var(--text-primary); }
+.md-h3 { font-size: 1.05rem; font-weight: 600; margin: 8px 0 4px 0; color: var(--text-primary); }
+
+/* Negrito e Itálico */
+.message-bubble strong { font-weight: 700; color: var(--text-primary); }
+.message-bubble em { font-style: italic; }
+
+/* Listas */
+.md-ul { margin: 6px 0 6px 18px; padding-left: 6px; }
+.md-li { margin-bottom: 4px; list-style-type: disc; }
+
+/* Blocos e Código inline */
+.inline-code {
+    background-color: rgba(128, 128, 128, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.88rem;
+}
+
+.code-block {
+    background-color: #1e1e2e;
+    color: #f8f8f2;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 0.88rem;
+    overflow-x: auto;
+    margin: 10px 0;
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   PRÉVIA MODERNA & PROFISSIONAL DE ANEXOS E IMAGENS
+   ========================================================================== */
+
+/* Container de prévias dentro da caixa de prompt */
+.attachments-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 6px 0 12px 0;
+}
+
+/* Card moderno de prévia de imagem */
+.image-preview-card {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: var(--bg-app);
+}
+
+.image-preview-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botão de remoção sobreposto na thumbnail */
+.preview-remove-overlay {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.preview-remove-overlay:hover {
+    background-color: #ef4444;
+    transform: scale(1.1);
+}
+
+/* Card para documentos/arquivos comuns */
+.file-preview-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-app);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    max-width: 200px;
+}
+
+.file-preview-card i {
+    font-size: 1.1rem;
+    color: var(--accent-purple);
+}
+
+.file-preview-card .file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.file-preview-card .remove-file-btn {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-left: auto;
+}
+
+.file-preview-card .remove-file-btn:hover {
+    color: #ef4444;
+}
+
+/* Exibição da imagem dentro da mensagem do Usuário no Chat */
+.chat-message-images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.chat-msg-img-thumb {
+    max-width: 240px;
+    max-height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- AJUSTE GLOBAL PARA ÍCONES FLATICON (MAIS VISÍVEIS E ENCORPADOS) --- */
+i[class*="fi-rr-"],
+i[class*="fi-sr-"],
+i.fi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    /* Adiciona espessura extra sutil para garantir boa visibilidade (não finos) */
+    -webkit-text-stroke: 0.3px currentColor;
+    font-size: 1.1rem;
+}
+
+/* Tamanho específico nos botões de envio e ferramentas */
+.send-prompt-btn-img i {
+    font-size: 1.2rem;
+    -webkit-text-stroke: 0.5px currentColor;
+}
+
+/* Ajuste nos chips de ação rápida */
+.quick-chip i,
+.prompt-action-pill i {
+    font-size: 1.05rem;
+    -webkit-text-stroke: 0.4px currentColor;
+}
