@@ -1,0 +1,344 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Canvas do Fundo Interativo com Estilo IA */
+#aiBgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body.plans-page-body {
+    background-color: #0d0e11 !important;
+    color: #f9fafb;
+    display: block !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    padding: 80px 16px 40px 16px !important;
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+}
+
+/* Cabeçalho Fixo */
+.plans-fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background-color: rgba(13, 14, 17, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-inner-content {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.plans-brand-logo {
+    height: 28px;
+    width: auto;
+    display: block;
+}
+
+.close-plans-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.3rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.close-plans-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Container do Modal Principal */
+.plans-modal-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 auto;
+    height: auto !important;
+}
+
+/* Seção de Título */
+.plans-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.plans-main-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.plans-sub-title {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
+/* Seletores de Ciclo (Cards) */
+.billing-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.billing-option-card {
+    position: relative;
+    background-color: rgba(22, 24, 29, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #2a2e37;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.billing-option-card.active {
+    border: 2px solid #ffffff;
+    background-color: rgba(18, 20, 24, 0.95);
+}
+
+.billing-radio {
+    display: none;
+}
+
+.save-badge {
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.billing-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.plan-cycle-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.billing-billed-text {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.billing-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.billing-price-row .old-price {
+    font-size: 0.95rem;
+    color: #6b7280;
+    text-decoration: line-through;
+}
+
+.billing-price-row .current-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.billing-price-row .current-price small {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+.free-months-tag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #10b981;
+    margin-top: 2px;
+}
+
+/* Radio Customizado */
+.radio-custom-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.billing-option-card.active .radio-custom-indicator {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    box-shadow: inset 0 0 0 4px #121418;
+}
+
+/* Lista de Recursos */
+.plans-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.plans-features-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: #d1d5db;
+    line-height: 1.4;
+}
+
+.feature-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.feature-icon i {
+    font-size: 1.15rem;
+    color: #ffffff;
+}
+
+/* Footer e Ações */
+.plans-footer-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.continue-free-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.continue-free-btn:hover {
+    opacity: 0.8;
+}
+
+.btn-start-pro {
+    width: 100%;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-start-pro:hover {
+    background-color: #2563eb;
+}
+
+.btn-start-pro:active {
+    transform: scale(0.99);
+}
+
+/* Barra de Termos e Privacidade */
+.terms-privacy-bar {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.4;
+    padding: 0 8px;
+}
+
+.terms-link {
+    color: #9ca3af;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.terms-link:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 380px) {
+    .plans-main-title {
+        font-size: 1.5rem;
+    }
+
+    .billing-option-card {
+        padding: 12px;
+    }
+
+    .plan-cycle-name {
+        font-size: 1rem;
+    }
+
+    .billing-price-row .current-price {
+        font-size: 1.1rem;
+    }
+}
+
