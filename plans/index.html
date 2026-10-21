@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocoAI - Planos e Preços</title>
+    <!-- Google Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <!-- Hugeicons CDN -->
+    <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme plans-page-body">
+
+    <!-- Canvas para Fundo Interativo de IA -->
+    <canvas id="aiBgCanvas"></canvas>
+
+    <!-- Cabeçalho Fixo Topo -->
+    <header class="plans-fixed-header">
+        <div class="header-inner-content">
+            <div class="logo-wrapper">
+                <img src="../assets/logo.png" alt="FocoAI Logo" class="plans-brand-logo">
+            </div>
+            <a href="../index.html" class="close-plans-btn" title="Fechar">
+                <i class="hgi-stroke hgi-cancel-01"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="plans-modal-wrapper">
+        <!-- Título e Subtítulo -->
+        <div class="plans-title-section">
+            <h1 class="plans-main-title">Escolha o seu plano</h1>
+            <p class="plans-sub-title">Modelos avançados, respostas rápidas e créditos adaptados ao seu ritmo.</p>
+        </div>
+
+        <!-- Seletor de Opções de Faturamento -->
+        <div class="billing-options-container">
+            
+            <!-- Opção Anual (Selecionada por padrão) -->
+            <label class="billing-option-card active" id="cardYearly" data-plan="yearly">
+                <div class="save-badge">SAVE $84</div>
+                <input type="radio" name="billingCycle" value="yearly" checked class="billing-radio">
+                <div class="billing-info">
+                    <span class="plan-cycle-name">Anual</span>
+                    <p class="billing-billed-text">Cobrado anualmente como $336/ano</p>
+                    <div class="billing-price-row">
+                        <span class="old-price">$35</span>
+                        <span class="current-price">$28<small>/mês</small></span>
+                    </div>
+                    <span class="free-months-tag">2 meses grátis</span>
+                </div>
+                <div class="radio-custom-indicator"></div>
+            </label>
+
+            <!-- Opção Mensal -->
+            <label class="billing-option-card" id="cardMonthly" data-plan="monthly">
+                <input type="radio" name="billingCycle" value="monthly" class="billing-radio">
+                <div class="billing-info">
+                    <span class="plan-cycle-name">Mensal</span>
+                    <div class="billing-price-row">
+                        <span class="current-price">$35<small>/mês</small></span>
+                    </div>
+                    <p class="billing-billed-text">Cancele a qualquer momento</p>
+                </div>
+                <div class="radio-custom-indicator"></div>
+            </label>
+
+            <!-- Opção Gratuito -->
+            <label class="billing-option-card" id="cardFree" data-plan="free">
+                <input type="radio" name="billingCycle" value="free" class="billing-radio">
+                <div class="billing-info">
+                    <span class="plan-cycle-name">Gratuito</span>
+                    <div class="billing-price-row">
+                        <span class="current-price">$0<small>/mês</small></span>
+                    </div>
+                    <p class="billing-billed-text">Uso básico com restauração por tempo</p>
+                </div>
+                <div class="radio-custom-indicator"></div>
+            </label>
+
+        </div>
+
+        <!-- Lista de Vantagens e Recursos (Dinâmica) -->
+        <ul class="plans-features-list" id="featuresList">
+            <!-- Injetado dinamicamente via JS -->
+        </ul>
+
+        <!-- Links e Ação Principal (CTA) -->
+        <div class="plans-footer-action">
+            <a href="../index.html" class="continue-free-btn">Continuar Gratuito</a>
+            <button type="button" class="btn-start-pro" id="btnSubscribe">Começar no Pro</button>
+
+            <!-- Barra de Termos e Privacidade -->
+            <div class="terms-privacy-bar">
+                Ao continuar, você concorda com nossos 
+                <a href="#" class="terms-link">Termos de Serviço</a> e 
+                <a href="#" class="terms-link">Política de Privacidade</a>.
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Alternância de Planos e Canvas Interativo de IA -->
+    <script>
+        const planFeatures = {
+            yearly: [
+                "Acesso ilimitado a todos os modelos de texto, imagens e análise com GPT-6 Astra, Qwen e Llama 3.",
+                "Pontos renovados diariamente sem limite de tempo de espera.",
+                "Geração e processamento de imagens em alta resolução com prioridade máxima.",
+                "Economia equivalente a 2 meses grátis cobrados anualmente."
+            ],
+            monthly: [
+                "Acesso completo a todos os modelos de texto e visão computacional.",
+                "Renovação diária de pontos sem contrato de fidelidade.",
+                "Cancelamento simples a qualquer momento sem taxas adicionais.",
+                "Processamento em alta velocidade."
+            ],
+            free: [
+                "250 pontos iniciais restaurados automaticamente a cada 5 horas.",
+                "Envio de mensagens de texto por 30 pontos e imagens por 100 pontos.",
+                "Acesso aos modelos padrão de inteligência artificial.",
+                "Totalmente gratuito sem necessidade de cartão de crédito."
+            ]
+        };
+
+        const planButtonTexts = {
+            yearly: "Começar no Pro Anual ($28/mês)",
+            monthly: "Começar no Pro Mensal ($35/mês)",
+            free: "Usar Plano Gratuito"
+        };
+
+        const cards = document.querySelectorAll('.billing-option-card');
+        const featuresList = document.getElementById('featuresList');
+        const btnSubscribe = document.getElementById('btnSubscribe');
+
+        function updatePlanDetails(planType) {
+            const features = planFeatures[planType] || [];
+            featuresList.innerHTML = features.map(feat => `
+                <li>
+                    <div class="feature-icon"><i class="hgi-stroke hgi-checkmark-circle-02"></i></div>
+                    <span>${feat}</span>
+                </li>
+            `).join('');
+
+            if (btnSubscribe) {
+                btnSubscribe.textContent = planButtonTexts[planType] || "Continuar";
+            }
+        }
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio) radio.checked = true;
+
+                const selectedPlan = card.getAttribute('data-plan');
+                updatePlanDetails(selectedPlan);
+            });
+        });
+
+        btnSubscribe?.addEventListener('click', () => {
+            const activeCard = document.querySelector('.billing-option-card.active');
+            const selectedPlan = activeCard ? activeCard.getAttribute('data-plan') : 'yearly';
+
+            if (selectedPlan === 'free') {
+                window.location.href = '../index.html';
+            } else {
+                alert(`Redirecionando para a finalização do plano Pro (${selectedPlan})...`);
+            }
+        });
+
+        // Inicializa com o plano Anual selecionado
+        updatePlanDetails('yearly');
+
+        // -------------------------------------------------------------
+        // EFEITO DE COR INTERATIVO ESTILO IA (CANVAS BACKGROUND)
+        // -------------------------------------------------------------
+        const canvas = document.getElementById('aiBgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let pointer = { x: canvas.width / 2, y: canvas.height / 2 };
+
+        const orbs = [
+            { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 180, color: 'rgba(79, 70, 229, 0.22)', vx: 0.4, vy: 0.3 },
+            { x: canvas.width * 0.8, y: canvas.height * 0.7, radius: 220, color: 'rgba(59, 130, 246, 0.18)', vx: -0.3, vy: -0.4 },
+            { x: canvas.width * 0.5, y: canvas.height * 0.5, radius: 150, color: 'rgba(168, 85, 247, 0.20)', vx: 0.2, vy: -0.2 }
+        ];
+
+        function handlePointer(e) {
+            if (e.touches && e.touches[0]) {
+                pointer.x = e.touches[0].clientX;
+                pointer.y = e.touches[0].clientY;
+            } else {
+                pointer.x = e.clientX;
+                pointer.y = e.clientY;
+            }
+        }
+
+        window.addEventListener('mousemove', handlePointer);
+        window.addEventListener('touchstart', handlePointer);
+        window.addEventListener('touchmove', handlePointer);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Mover orbes gradualmente e fazê-las reagir ao toque
+            orbs.forEach((orb, index) => {
+                orb.x += orb.vx;
+                orb.y += orb.vy;
+
+                if (orb.x < 0 || orb.x > canvas.width) orb.vx *= -1;
+                if (orb.y < 0 || orb.y > canvas.height) orb.vy *= -1;
+
+                // Atração leve para o ponto de toque/mouse
+                const dx = pointer.x - orb.x;
+                const dy = pointer.y - orb.y;
+                orb.x += dx * 0.005 * (index + 1);
+                orb.y += dy * 0.005 * (index + 1);
+
+                const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
+                gradient.addColorStop(0, orb.color);
+                gradient.addColorStop(1, 'rgba(13, 14, 17, 0)');
+
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
