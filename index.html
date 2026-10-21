@@ -53,8 +53,68 @@
     <link rel="stylesheet" href="css/logue.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/inspiration.css">
+
+    <style>
+        /* Estilos para o container de Anúncio Otimizado */
+        .ad-container {
+            width: 100%;
+            max-width: 728px;
+            margin: 20px auto;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ad-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 6px;
+        }
+
+        /* Anúncio Fixo no Rodapé (Sticky Footer Ad) */
+        .sticky-footer-ad {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 728px;
+            background: #111827;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            padding: 8px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sticky-footer-ad .close-ad-btn {
+            position: absolute;
+            top: 2px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            color: #aaa;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    
+    <!-- Script de Anúncio Ingest (Vignette / Popunder Monetag) -->
+    <script>(function(s){s.dataset.zone='12090666',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
     <!-- Banner de Anúncios Topo -->
     <div class="announcement-banner">
@@ -98,6 +158,15 @@
                         <button class="quick-chip"><i class="fi fi-rr-magic-wand"></i> Animação / Motion</button>
                         <button class="quick-chip"><i class="fi fi-rr-stats"></i> Analisar Anúncio</button>
                         <button class="quick-chip"><i class="fi fi-rr-video-camera"></i> Seedance 2.5</button>
+                    </div>
+
+                    <!-- POSIÇÃO 1: Anúncio Banner Central (Abaixo dos Chips) -->
+                    <div class="ad-container">
+                        <span class="ad-label">Publicidade</span>
+                        <!-- Insira o código/script do seu anúncio Monetag/Google AdSense abaixo -->
+                        <div id="ad-placement-center">
+                            <!-- Exemplo: <script src="//example.com/ad.js"></script> -->
+                        </div>
                     </div>
 
                     <!-- Seção de Histórias e Obter o App -->
@@ -155,6 +224,14 @@
                 <div id="footer-container"></div>
             </div>
         </main>
+    </div>
+
+    <!-- POSIÇÃO 2: Banner Fixo Inferior (Sticky Footer Ad) -->
+    <div class="sticky-footer-ad" id="stickyAd">
+        <button class="close-ad-btn" onclick="document.getElementById('stickyAd').style.display='none'">✕ Fechar</button>
+        <span class="ad-label">Anúncio</span>
+        <!-- Insira o código da sua rede de anúncios aqui -->
+        <div id="ad-placement-sticky"></div>
     </div>
 
     <!-- Modal de Confirmação de Logout -->
